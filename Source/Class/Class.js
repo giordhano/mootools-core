@@ -59,8 +59,11 @@ var reset = function(object){
 	return object;
 };
 
+var pattern = /a/.test(function(){a;}) ? /\.parent\(/ : null;
+
 var wrap = function(self, key, method){
 	if (method.$origin) method = method.$origin;
+	if (pattern && !method.$protected && !pattern.test(method)) return method;
 	var wrapper = function(){
 		if (method.$protected && this.$caller == null) throw new Error('The method "' + key + '" cannot be called.');
 		var caller = this.caller, current = this.$caller;

@@ -76,7 +76,7 @@ var Fx = this.Fx = new Class({
 		if (!this.isRunning()) return true;
 		switch (this.options.link){
 			case 'cancel': this.cancel(); return true;
-			case 'chain': this.chain(this.caller.pass(arguments, this)); return false;
+			case 'chain': this.chain(this.start.pass(arguments, this)); return false;
 		}
 		return false;
 	},
